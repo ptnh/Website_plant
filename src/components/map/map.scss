@@ -1,0 +1,102 @@
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--background-color);
+    max-height: 600px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin-bottom: 15px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 28px;
+    // margin-bottom: 0px;
+    color: #4287f5;
+    // border: 1px solid red;
+}
+
+.contact-info {
+    // border: 1px solid yellow;
+    margin-top: 0px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.map_container {
+    flex-basis: 48%;
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%;
+}
+
+.map-responsive {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+}
+
+.map_shop {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.info_contact {
+    flex-basis: 48%;
+    display: flex;
+    flex-direction: column;
+    
+    margin-left: 20px;
+    // border: 1px solid red;
+}
+
+.info_contact h2{
+    // margin-bottom: 3px;
+    color: var(--main-color);
+}
+
+.info-item {
+    // border: 1px solid red;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    // transition: transform 0.3s ease;
+}
+
+.info-item:hover {
+    transform: translateY(-5px);
+    background-color: var(--background-color);
+}
+
+h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: green;
+}
+
+p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Media Queries */
+// @media screen and (max-width: 768px) {
+//     .row {
+//         flex-direction: column;
+//     }
+
+//     .map_container, .info_-contact {
+//         flex-basis: 100%;
+//     }
+// }

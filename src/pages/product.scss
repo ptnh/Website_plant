@@ -1,0 +1,425 @@
+.section-first-title {
+    display: flex;
+    height: 55px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    // border: 1px solid red;
+    color: var(--main-color);
+    font-size: 32px;
+    margin-bottom: 30px;
+    // border: 1px solid yellow;
+}
+
+.section-first-title::after {
+    content: '';
+    position: absolute;
+    border: 2px solid var(--main-color);
+    width: 200px;
+    bottom: 0;
+    left: 410px;
+}
+
+.section-first-title::before {
+    content: '';
+    position: absolute;
+    border: 2px solid var(--main-color);
+    width: 200px;
+    bottom: 0;
+    right: 410px;
+}
+
+.icon-mid {
+    color: var(--main-color);
+    font-size: 30px;
+    position: absolute;
+    bottom: -25px;
+    left: 630px;
+}
+
+.section-first-title h3 {
+    margin: 0px 10px;
+}
+
+//css chia bố cục
+.section_body_detail_product {
+    // border: 1px solid red;
+    display: flex;
+}
+
+.section_left {
+    width: 930px;
+    height: auto;
+}
+
+// css bên trái cho phần chi tiết ảnh
+.detail-product {
+    display: flex;
+    margin-left: 10px;
+    // text-align: center;
+    border: 1px solid white;
+    box-shadow: 0 0 3px black;
+}
+
+.detail-image {
+    display: flex;
+    // border: 1px solid yellow;
+    margin: 20px 20px 20px 20px;
+}
+
+.main-image {
+    // border: 1px solid pink;
+    width: 325px;
+    height: 325px;
+    border-radius: 12px;
+    box-shadow: 0 0 5px black;
+}
+
+.list-extra-image {
+    // border: 1px solid yellowgreen;
+    max-width: 75px;
+    margin-left: 20px;
+}
+
+.extra-image {
+    margin: 5px 0px;
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    box-shadow: 0 0 5px black;
+    // border: 1px solid red;
+}
+
+.image-first {
+    margin: 0;
+}
+
+.seperate {
+    margin-top: 20px;
+    align-items: center;
+    width: 2px;
+    height: 330px;
+    border-right: 2px solid aqua;
+}
+
+//css cho nội dung chữ
+
+.detail-content {
+    max-width: 500px;
+    // border: 1px solid red;
+    margin: 20px 50px 20px 20px;
+}
+
+.detail-content h3 {
+    color: var(--main-color);
+    font-size: 24px;
+}
+
+.review-product {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    // border: 1px solid green;
+}
+
+.start {
+    margin-left: 20px;
+    color: yellow;
+    font-size: 28px;
+}
+
+.info-product {
+    font-size: 18px;
+    margin-bottom: 10px;
+    width: 450px;
+    // height: 90px;
+    overflow: hidden;
+    max-height: 90px;
+    overflow-y: auto;
+    // border: 1px solid red;
+}
+
+.price-product {
+    font-size: 32px;
+    display: flex;
+    margin-left: 0px;
+    align-items: center;
+    // color: var(--main-color);
+}
+
+span {
+    font-size: 20px;
+}
+
+.discount-price {
+    font-size: 24px;
+    margin-left: 40px;
+    span {
+        text-decoration: line-through;
+        font-size: 18px;
+        color: bisque;
+    }
+}
+
+.real-price {
+    color: red;
+    font-size: 22px;
+    // margin-left: 80px;
+}
+
+.add-product-detail {
+    background-color: var(--btn-color);
+    color: white;
+    width: 210px;
+    // border-radius: 10px;
+    padding: 10px;
+}
+
+.view-product-detail {
+    background-color: var(--btn-color);
+    color: white;
+    // border-radius: 10px;
+    padding: 10px;
+    width: 210px;
+    margin-left: 10px;
+}
+
+.view-product-detail a {
+    color: white;
+    margin-left: 5px;
+}
+
+/* css danh mục cây kiểng */
+.category-plants-product {
+    width: 920px;
+    position: relative;
+    border: 1px solid green;
+    margin: 10px;
+    background-color: var(--background-color);
+    border-radius: 5px;
+
+    .stemp-product {
+        position: absolute;
+        top: 10px;
+        left: -8px;
+        color: green;
+        background-color: var(--main-color);
+        font-size: 1.9rem;
+        font-weight: 700;
+        line-height: 1.6rem;
+        padding: 5px;
+        // border: 1px solid red;
+
+        a {
+            margin-top: 1px;
+            font-size: 15px;
+            color: white;
+        }
+
+        span {
+            color: white;
+        }
+    }
+
+    .stemp-product::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        border-top: 8px solid var(--main-color);
+        border-left: 8px solid transparent;
+        filter: brightness(60%);
+    }
+
+    .stemp-product::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: -20px;
+        border-bottom: 20px solid var(--main-color);
+        border-right: 20px solid transparent;
+    }
+
+    .stemp-product::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -20px;
+        border-top: 20px solid var(--main-color);
+        border-right: 20px solid transparent;
+    }
+
+    .list-plants-product {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 40px 20px 20px 20px;
+        padding: 10px 0px;
+        background-color: var(--background-color);
+        // border: 1px solid red;
+    }
+}
+
+.detail-plant-product {
+    width: 250px;
+    height: 350px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    // margin-left: 20px;
+    margin: 10px;
+}
+
+.detail-plant-product img {
+    width: 250px;
+    // height: auto;
+    height: 250px;
+    object-fit: cover;
+    // object-position: center;
+    transition: 0.3s;
+    // margin-bottom: 20px;
+}
+
+.detail-plant-product h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.price-product {
+    display: flex;
+    justify-content: center;
+}
+
+.price-old-product {
+    font-size: 22px;
+    margin-right: 12px;
+    text-decoration: line-through;
+}
+
+.price-new-product {
+    font-size: 22px;
+    // text-decoration: none;
+    color: #f00;
+}
+
+.detail-plant-product:hover img {
+    margin-bottom: 20px;
+    transform: scale(1.2);
+}
+
+.detail-plant-product:hover {
+    background-color: var(--background-color);
+    box-shadow: 0 0 5px white, 0 0 10px var(--main-color), 0 0 15px var(--background-color);
+}
+
+.add-product-product {
+    position: absolute; 
+    bottom: 75px;
+    right: 1px;
+    // border: 1px solid red;
+    padding: 10px 40px;
+    border-radius: 0px;
+    display: none;
+    color: var(--text-color);
+    transition: 0.5s;
+    background-color: rgba(34, 32, 32, 0.3);
+}
+
+.detail-plant-product:hover .add-product-product {
+    display: block;
+    // position: ;
+}
+
+//css giao diện bên phải
+.section_right {
+    width: 325px;
+    // margin-top: 20px;
+    // border: 3px solid yellow;
+}
+
+.services {
+    width: 100%;
+    max-width: 800px;
+    margin: 0px 22px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title_service {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--main-color);
+}
+
+.title_service h4 {
+    font-size: 24px;
+    color: var(--main-color);
+}
+
+.content-service {
+    // display: grid;
+    // grid-template-columns: repeat(2, 1fr);
+    // gap: 20px;
+}
+
+.detail-service {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.icon_service {
+    font-size: 24px;
+    color: #f39c12;
+    margin-right: 10px;
+}
+
+.detail-service p {
+    font-size: 16px;
+    color: #555;
+}
+
+// css địa chỉ
+.info_shop {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px 22px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.heading_shop {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.heading_shop h4 {
+    font-size: 24px;
+    color: var(--main-color);
+}
+
+.detail_info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.icon_info {
+    font-size: 24px;
+    color: #f39c12;
+    margin-right: 10px;
+}
+
+.detail_info p {
+    font-size: 16px;
+    color: #555;
+    margin: 0;
+    padding: 0;
+}

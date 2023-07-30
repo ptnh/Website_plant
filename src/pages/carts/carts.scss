@@ -1,0 +1,225 @@
+.section-first-title {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    // border: 1px solid red;
+    color: var(--main-color);
+    font-size: 32px;
+}
+
+.section-first-title::after {
+    content: '';
+    position: absolute;
+    border: 2px solid var(--main-color);
+    width: 200px;
+    bottom: 0;
+    left: 410px;
+}
+
+.section-first-title::before {
+    content: '';
+    position: absolute;
+    border: 2px solid var(--main-color);
+    width: 200px;
+    bottom: 0;
+    right: 410px;
+}
+
+.icon-mid {
+    color: var(--main-color);
+    font-size: 30px;
+    position: absolute;
+    bottom: -25px;
+    left: 630px;
+}
+
+.section-first-title h3 {
+    margin: 0px 10px;
+}
+
+.container_list_carts {
+    margin: 0px auto 0px auto;
+    // border: 1px solid red;
+    width: 860px;
+    height: auto;
+}
+
+.top_infomation {
+    margin: 0 auto;
+    // border: 1px solid yellow;
+    // margin: 20px 20px;
+    width: 860px;
+    height: 220px;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.stages_of_cart {
+    border: 1px solid aqua;
+    width: 500px;
+    margin: 40px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.stage_1 {
+    // border: 1px solid blue;
+    color: green;
+    margin-right: 20px;
+}
+
+.phase {
+    font-size: 24px;
+}
+
+.stage_1 p {
+    margin: 5px 0px;
+}
+
+.stage_1 {
+    position: relative;
+    border: 1px solid pink;
+    z-index: 0;
+}
+
+.stage_1::before {
+    position: absolute;
+    content: '';
+    bottom: 12px;
+    left: -45px;
+    width: 200px;
+    height: 2px;
+    background-color: red;
+    z-index: 10;
+}
+
+.stage_2 {
+    border: 1px solid pink;
+    margin-right: 20px;
+}
+
+.stage_2 p {
+    margin: 5px 0px;
+}
+
+.stage_2 {
+    position: relative;
+    /* border: 1px solid pink; */
+    z-index: 1;
+}
+
+.stage_2::before {
+    position: absolute;
+    content: '';
+    bottom: 12px;
+    left: -28px;
+    width: 185px;
+    height: 2px;
+    background-color: black;
+    z-index: 10;
+}
+
+.stage_3 {
+    border: 1px solid pink;
+    /* margin-right: 20px; */
+}
+
+.stage_3 p {
+    margin: 5px 0px;
+}
+
+.stage_3 {
+    position: relative;
+    /* border: 1px solid pink; */
+    z-index: 1;
+}
+
+.stage_3::before {
+    position: absolute;
+    content: '';
+    bottom: 12px;
+    left: -26px;
+    width: 180px;
+    height: 2px;
+    background-color: blue;
+    z-index: 10;
+}
+
+/* css khung danh sách hàng trong giỏ */
+.list_products {
+    width: 100%;
+    border-collapse: collapse;
+}
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    max-height: 20px;
+    background-color: #584d4d;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+td img {
+    width: 30px;
+    height: 40px;
+}
+
+button {
+    border: none;
+    padding: 10px;
+}
+
+#quantity {
+    position: relative;
+    margin-left: 20px;
+}
+
+.minus-button {
+    color: black;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: none;
+    top: bottom;
+    right: 925px;
+    cursor: pointer;
+    position: absolute;
+}
+
+.plus-button {
+    color: black;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    /* position: absolute; */
+}
+
+// scss cho phần lựa chọn mua hàng và thanh toán
+.total_money_cart {
+    display: flex;
+    justify-content: right;
+}
+
+.total_money_cart .result {
+    font-size: 22px;
+}
+
+.continute_buy_product {
+    margin-left: 5px;
+    background-color: aquamarine;
+}
+
+.pay {
+    margin-left: 5px;
+    background-color: aquamarine;
+}

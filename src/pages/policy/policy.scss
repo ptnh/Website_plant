@@ -1,0 +1,73 @@
+.container_policy {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.carousel-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.box {
+    flex: 1;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.client_info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.client_name {
+    flex: 1;
+}
+
+.client_name h5 {
+    font-size: 24px;
+    color: var(--main-color);
+}
+
+.client_name h6 {
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.box p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.content_option_1,
+.content_option_2,
+.content_option_3,
+.content_option_4,
+.content_option_5,
+.content_option_6 {
+    display: none;
+    font-size: 22px;
+}
+
+.option_1 h6,
+.option_2 h6,
+.option_3 h6,
+.option_4 h6,
+.option_5 h6,
+.option_6 h6 {
+    font-size: 18px;
+    padding: 10px;
+}
+.option_1:hover .content_option_1,
+.option_2:hover .content_option_2,
+.option_3:hover .content_option_3,
+.option_4:hover .content_option_4,
+.option_5:hover .content_option_5,
+.option_6:hover .content_option_6 {
+    display: block;
+}

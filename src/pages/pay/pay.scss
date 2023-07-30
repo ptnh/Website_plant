@@ -1,0 +1,232 @@
+.section-first-title {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    // border: 1px solid red;
+    color: var(--main-color);
+    font-size: 32px;
+}
+
+.section-first-title::after {
+    content: '';
+    position: absolute;
+    border: 2px solid var(--main-color);
+    width: 200px;
+    bottom: 0;
+    left: 410px;
+}
+
+.section-first-title::before {
+    content: '';
+    position: absolute;
+    border: 2px solid var(--main-color);
+    width: 200px;
+    bottom: 0;
+    right: 410px;
+}
+
+.icon-mid {
+    color: var(--main-color);
+    font-size: 30px;
+    position: absolute;
+    bottom: -25px;
+    left: 630px;
+}
+
+.section-first-title h3 {
+    margin: 0px 10px;
+}
+
+.section_pay_money {
+    margin: 0px auto 0px auto;
+    // border: 1px solid red;
+    width: 860px;
+    height: auto;
+}
+
+.top_infomation {
+    margin: 0 auto;
+    // border: 1px solid yellow;
+    // margin: 20px 20px;
+    width: 860px;
+    height: 220px;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.stages_of_cart {
+    border: 1px solid aqua;
+    width: 500px;
+    margin: 40px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.stage_1 {
+    // border: 1px solid blue;
+    color: green;
+    margin-right: 20px;
+}
+
+.phase {
+    font-size: 24px;
+}
+
+.stage_1 p {
+    margin: 5px 0px;
+}
+
+.stage_1 {
+    position: relative;
+    border: 1px solid pink;
+    z-index: 0;
+}
+
+.stage_1::before {
+    position: absolute;
+    content: '';
+    bottom: 12px;
+    left: -45px;
+    width: 200px;
+    height: 2px;
+    background-color: red;
+    z-index: 10;
+}
+
+.stage_2 {
+    color: green;
+    border: 1px solid pink;
+    margin-right: 20px;
+}
+
+.stage_2 p {
+    margin: 5px 0px;
+}
+
+.stage_2 {
+    position: relative;
+    /* border: 1px solid pink; */
+    z-index: 1;
+}
+
+.stage_2::before {
+    position: absolute;
+    content: '';
+    bottom: 12px;
+    left: -28px;
+    width: 185px;
+    height: 2px;
+    background-color: black;
+    z-index: 10;
+}
+
+.stage_3 {
+    border: 1px solid pink;
+    /* margin-right: 20px; */
+}
+
+.stage_3 p {
+    margin: 5px 0px;
+}
+
+.stage_3 {
+    position: relative;
+    /* border: 1px solid pink; */
+    z-index: 1;
+}
+
+.stage_3::before {
+    position: absolute;
+    content: '';
+    bottom: 12px;
+    left: -26px;
+    width: 180px;
+    height: 2px;
+    background-color: blue;
+    z-index: 10;
+}
+
+// scss cho form thông tin
+.infomation_client_pay {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+
+    form {
+        h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+
+            input[type='text'] {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+            }
+        }
+
+        table.list_products {
+            width: 100%;
+
+            tr {
+                td {
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                }
+
+                .quantity {
+                    display: flex;
+                    align-items: center;
+
+                    button {
+                        // align-items: right;
+                        padding: 5px 10px;
+                        background-color: #eee;
+                        border: none;
+                        border-radius: 3px;
+                        cursor: pointer;
+                    }
+
+                    .quantity_value {
+                        margin: 0 10px;
+                        font-weight: bold;
+                    }
+                }
+
+                .total_money {
+                    font-weight: bold;
+                }
+            }
+        }
+
+        button[type='submit'] {
+            // justify-content: right;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    }
+}

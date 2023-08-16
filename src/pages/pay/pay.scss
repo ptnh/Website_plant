@@ -55,99 +55,99 @@
     justify-content: center;
 }
 
-.stages_of_cart {
-    border: 1px solid aqua;
-    width: 500px;
-    margin: 40px 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-}
+// .stages_of_cart {
+//     // border: 1px solid aqua;
+//     width: 500px;
+//     margin: 40px 80px;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     text-align: center;
+// }
 
-.stage_1 {
-    // border: 1px solid blue;
-    color: green;
-    margin-right: 20px;
-}
+// .stage_1 {
+//     // border: 1px solid blue;
+//     color: green;
+//     margin-right: 20px;
+// }
 
-.phase {
-    font-size: 24px;
-}
+// .phase {
+//     font-size: 24px;
+// }
 
-.stage_1 p {
-    margin: 5px 0px;
-}
+// .stage_1 p {
+//     margin: 5px 0px;
+// }
 
-.stage_1 {
+// .stage_1 {
+//     position: relative;
+//     // border: 1px solid pink;
+//     z-index: 0;
+// }
+
+// .stage_1::before {
+//     position: absolute;
+//     content: '';
+//     bottom: 12px;
+//     left: -45px;
+//     width: 200px;
+//     height: 2px;
+//     background-color: red;
+//     z-index: 10;
+// }
+
+.stage_2_carts {
     position: relative;
-    border: 1px solid pink;
+    // border: 1px solid pink;
     z-index: 0;
-}
-
-.stage_1::before {
-    position: absolute;
-    content: '';
-    bottom: 12px;
-    left: -45px;
-    width: 200px;
-    height: 2px;
-    background-color: red;
-    z-index: 10;
-}
-
-.stage_2 {
+    // display: flex
     color: green;
-    border: 1px solid pink;
-    margin-right: 20px;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-color: aquamarine;
 }
 
-.stage_2 p {
+.stage_2_carts p {
     margin: 5px 0px;
+    color: green;
 }
 
-.stage_2 {
-    position: relative;
-    /* border: 1px solid pink; */
-    z-index: 1;
-}
 
-.stage_2::before {
+
+.stage_2_carts_icon{
     position: absolute;
-    content: '';
-    bottom: 12px;
-    left: -28px;
-    width: 185px;
-    height: 2px;
-    background-color: black;
-    z-index: 10;
+    bottom: 40px;
+    right: -55px;
+    display: flex;
+    margin: 0px 20px;
 }
 
-.stage_3 {
-    border: 1px solid pink;
-    /* margin-right: 20px; */
-}
+// .stage_3 {
+//     // border: 1px solid pink;
+//     /* margin-right: 20px; */
+// }
 
-.stage_3 p {
-    margin: 5px 0px;
-}
+// .stage_3 p {
+//     margin: 5px 0px;
+// }
 
-.stage_3 {
-    position: relative;
-    /* border: 1px solid pink; */
-    z-index: 1;
-}
+// .stage_3 {
+//     position: relative;
+//     /* border: 1px solid pink; */
+//     z-index: 1;
+// }
 
-.stage_3::before {
-    position: absolute;
-    content: '';
-    bottom: 12px;
-    left: -26px;
-    width: 180px;
-    height: 2px;
-    background-color: blue;
-    z-index: 10;
-}
+// .stage_3::before {
+//     position: absolute;
+//     content: '';
+//     bottom: 12px;
+//     left: -26px;
+//     width: 180px;
+//     height: 2px;
+//     background-color: blue;
+//     z-index: 10;
+// }
 
 // scss cho form thông tin
 .infomation_client_pay {
@@ -227,6 +227,12 @@
             border: none;
             border-radius: 3px;
             cursor: pointer;
+
+            
+            &:hover{
+                background-color: #003802;
+                color: #fff;
+            }
         }
     }
 }

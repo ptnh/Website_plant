@@ -1,4 +1,4 @@
-import Header from '~/pages/header/Header';
+import Header from '~/components/header/Header';
 import Footer from '~/components/footer/Footer';
 
 import React, { useState, useEffect } from 'react';
@@ -10,6 +10,7 @@ import {
     fa3,
     faCartShopping,
     faCheck,
+    faChevronRight,
     faCircle,
     faMoneyBill1Wave,
     faSpa,
@@ -17,31 +18,28 @@ import {
     faTree,
 } from '@fortawesome/free-solid-svg-icons';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { readApiCart, updateApiCart } from '~/Api';
 
 function Carts({ isLoggedIn, username, id }) {
-    // API lấy các sản phẩm trong giỏ hàng có id giống với client
-    const cartsAPI = `http://localhost:3000/cart_bought?owner=${id}`;
-    // APi lấy tất cả sản phẩm trong giỏ hàng
-    const cartssAPI = `http://localhost:3000/cart_bought`;
-    // chứa các sản phẩm có ig trùng với client
+    // chứa các sản phẩm có id trùng với client
     const [carts, setCarts] = useState([]);
     const [totalMoney, setTotalMoney] = useState(0);
     const [quantities, setQuantities] = useState([]);
     // tạo kết nối
     useEffect(() => {
-        fetch(cartsAPI)
+        fetch(`${readApiCart}?id_owner=${id}`)
             .then((response) => response.json())
             .then((data) => {
                 setCarts(data);
                 const newQuantities = {};
                 data.forEach((cart) => {
-                    newQuantities[cart.id] = cart.quantity; // Lưu quantity theo cart id
+                    newQuantities[cart.id_plant] = cart.quantity; // Lưu quantity theo cart id
                 });
 
                 setQuantities(newQuantities); // Cập nhật state quantities
             });
-    }, [carts.length]);
-    
+    }, [quantities]);
+
     // cập nhật tổng số tiền
     useEffect(() => {
         updateTotalMoney();
@@ -50,8 +48,8 @@ function Carts({ isLoggedIn, username, id }) {
     const updateTotalMoney = () => {
         let total = 0;
         carts.forEach((cart) => {
-            const quantity = quantities[cart.id] || cart.quantity;
-            total += cart.price_bought * quantity;
+            const quantity = quantities[cart.id_plant] || cart.quantity;
+            total += cart.price_product * quantity;
         });
         setTotalMoney(total);
     };
@@ -59,134 +57,77 @@ function Carts({ isLoggedIn, username, id }) {
     // giảm số lượng sản phẩm đi 1
     const idString = id.toString();
     const decreaseQuantity = (id, id_plant, cart) => {
-        const CartssAPI = 'http://localhost:3000/cart_bought';
-
-        setQuantities((prevQuantities) => ({
-            ...prevQuantities,
-            [id]: prevQuantities[id] - 1,
-        }));
-
+        let count = 0;
         // Gửi request GET đến API để lấy dữ liệu hiện tại
-        fetch(CartssAPI)
+        fetch(readApiCart)
             .then((response) => response.json())
             .then((data) => {
                 // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
-                const existingCartItem = data.find((item) => item.owner === idString && item.id_plant === id_plant);
+                const existingCartItem = data.find((item) => item.id_owner === idString && item.id_plant === id_plant);
 
                 if (existingCartItem) {
-                    // Nếu sản phẩm đã tồn tại, giảm số lượng lên -1
-                    const updatedCart = {
-                        ...existingCartItem,
-                        quantity: existingCartItem.quantity - 1,
-                    };
+                    count = parseInt(existingCartItem.quantity, 10);
+                    if (count === 0) {
+                    } else {
+                        count = count - 1;
+                        const formData2 = new FormData();
+                        // formData2.append('id_cart', NULL);
+                        formData2.append('id_owner', idString);
+                        formData2.append('id_plant', cart.id_plant);
+                        formData2.append('name_product', cart.name_product);
+                        formData2.append('image_represent', cart.image_represent);
+                        formData2.append('price_product', cart.price_priduct);
+                        formData2.append('quantity', count);
+                        fetch(updateApiCart, {
+                            method: 'POST',
+                            body: formData2,
+                        })
+                            .then((response) => response.json())
+                            .then((data) => {})
+                            .catch((error) => console.error('Error updating cart item:', error));
+                    }
+                }
+            });
+    };
 
-                    // Gửi request PUT đến API để cập nhật thông tin sản phẩm trong giỏ hàng
-                    fetch(`${CartssAPI}/${existingCartItem.id}`, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(updatedCart),
+    // tăng lên 1
+    const increaseQuantity = (id, id_plant, cart) => {
+        let count = 0;
+        // Gửi request GET đến API để lấy dữ liệu hiện tại
+        fetch(readApiCart)
+            .then((response) => response.json())
+            .then((data) => {
+                // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
+                const existingCartItem = data.find((item) => item.id_owner === idString && item.id_plant === id_plant);
+
+                if (existingCartItem) {
+                    count = parseInt(existingCartItem.quantity, 10);
+                    count = count + 1;
+                    const formData2 = new FormData();
+                    // formData2.append('id_cart', NULL);
+                    formData2.append('id_owner', idString);
+                    formData2.append('id_plant', cart.id_plant);
+                    formData2.append('name_product', cart.name_product);
+                    formData2.append('image_represent', cart.image_represent);
+                    formData2.append('price_product', cart.price_priduct);
+                    formData2.append('quantity', count);
+                    fetch(updateApiCart, {
+                        method: 'POST',
+                        body: formData2,
                     })
                         .then((response) => response.json())
                         .then((data) => {})
                         .catch((error) => console.error('Error updating cart item:', error));
                 }
-            })
-            .catch((error) => console.error('Error fetching carts:', error));
-    };
-
-    // tăng lên 1
-    const increaseQuantity = (id, id_plant, cart) => {
-        const CartssAPI = 'http://localhost:3000/cart_bought';
-        // Tạo object newCart từ plantId
-        const newCart = {};
-        setQuantities((prevQuantities) => ({
-            ...prevQuantities,
-            [id]: prevQuantities[id] + 1,
-        }));
-
-        // Gửi request GET đến API để lấy dữ liệu hiện tại
-        fetch(CartssAPI)
-            .then((response) => response.json())
-            .then((data) => {
-                // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
-                const existingCartItem = data.find((item) => item.owner === idString && item.id_plant === id_plant);
-
-                if (existingCartItem) {
-                    // Nếu sản phẩm đã tồn tại, tăng số lượng lên +1
-                    const updatedCart = {
-                        ...existingCartItem,
-                        quantity: existingCartItem.quantity + 1,
-                    };
-
-                    // Gửi request PUT đến API để cập nhật thông tin sản phẩm trong giỏ hàng
-                    fetch(`${CartssAPI}/${existingCartItem.id}`, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(updatedCart),
-                    })
-                        .then((response) => response.json())
-                        .then((data) => {
-                            // console.log(data); // In ra dữ liệu trả về từ API sau khi cập nhật
-                        })
-                        .catch((error) => console.error('Error updating cart item:', error));
-                } else {
-                    // Nếu sản phẩm chưa tồn tại, thêm sản phẩm mới vào giỏ hàng
-                    fetch(CartssAPI, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(newCart),
-                    })
-                        .then((response) => response.json())
-                        .then((data) => {
-                            // console.log(data); // In ra dữ liệu trả về từ API sau khi thêm newCart vào carts
-                        })
-                        .catch((error) => console.error('Error fetching carts:', error));
-                }
-            })
-            .catch((error) => console.error('Error fetching carts:', error));
+            });
     };
 
     // xử lý thanh toán
-    const orderAPI = 'http://localhost:3000/order';
     const history = useNavigate();
     const handlePay = (carts, total_money) => {
-        // Thực hiện các thao tác để insert dữ liệu vào data ở đây
-        const totalMoney = carts.reduce((total, cart) => total + cart.price_bought * quantities[cart.id], 0);
-
-        const newOther = {
-            carts: carts.map((cart) => ({
-                id: cart.id,
-                image_represent: cart.image_represent,
-                name_product: cart.name_product,
-                price_bought: cart.price_bought,
-                quantity: quantities[cart.id],
-            })),
-            owner: id,
-            total_money: totalMoney,
-        };
-
-        fetch(orderAPI, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newOther),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                setCarts([...carts, data]);
-            })
-            .catch((error) => console.error('Error creating post:', error));
-
-        // Chuyển hướng đến trang thanh toán
         history('/pay');
     };
+    
 
     return (
         <>
@@ -210,20 +151,25 @@ function Carts({ isLoggedIn, username, id }) {
             <div class="container_list_carts">
                 <div class="top_infomation">
                     <div class="stages_of_cart">
-                        <div class="stage_1">
+                        <div class="stage_1_carts">
                             <FontAwesomeIcon className="phase" icon={faCartShopping} />
                             <p>Giỏ hàng của tôi</p>
-                            <FontAwesomeIcon className="fa-light" icon={fa1} />
+                            <div class="stage_1_carts_icon">
+                                <FontAwesomeIcon icon={faChevronRight} />
+                                <FontAwesomeIcon icon={faChevronRight} />
+                            </div>
                         </div>
                         <div class="stage_2">
                             <FontAwesomeIcon className="phase" icon={faMoneyBill1Wave} />
-                            <p>Giỏ hàng của tôi</p>
-                            <FontAwesomeIcon icon={fa2} />
+                            <p>Thông tin thanh toán</p>
+                            <div class="stage_2_carts_icon">
+                                <FontAwesomeIcon icon={faChevronRight} />
+                                <FontAwesomeIcon icon={faChevronRight} />
+                            </div>
                         </div>
                         <div class="stage_3">
                             <FontAwesomeIcon className="phase" icon={faCheck} />
                             <p>Giỏ hàng của tôi</p>
-                            <FontAwesomeIcon icon={fa3} />
                         </div>
                     </div>
                 </div>
@@ -239,31 +185,31 @@ function Carts({ isLoggedIn, username, id }) {
                             </tr>
                             {carts.map((cart) => (
                                 <>
-                                    <tr key={cart.id}>
+                                    <tr key={cart.id_cart}>
                                         <td>
                                             <img src={cart.image_represent} />
                                         </td>
                                         <td>{cart.name_product}</td>
-                                        <td>{cart.price_bought}</td>
+                                        <td>{cart.price_product}</td>
                                         <td>
                                             <div className="quantity">
                                                 <button
                                                     className="btn_minus"
-                                                    onClick={() => decreaseQuantity(cart.id, cart.id_plant, cart)}
+                                                    onClick={() => decreaseQuantity(cart.id_cart, cart.id_plant, cart)}
                                                 >
                                                     -
                                                 </button>
 
-                                                <span className="quantity_value">{quantities[cart.id]}</span>
+                                                <span className="quantity_value">{quantities[cart.id_plant]}</span>
                                                 <button
                                                     className="btn_plus"
-                                                    onClick={() => increaseQuantity(cart.id, cart.id_plant, cart)}
+                                                    onClick={() => increaseQuantity(cart.id_cart, cart.id_plant, cart)}
                                                 >
                                                     +
                                                 </button>
                                             </div>
                                         </td>
-                                        <td className="total_money">{cart.price_bought * quantities[cart.id]}</td>
+                                        <td className="total_money">{cart.price_product * quantities[cart.id_plant]}</td>
                                     </tr>
                                 </>
                             ))}

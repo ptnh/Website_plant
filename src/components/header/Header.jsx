@@ -4,22 +4,30 @@ import { menuData } from '../../data-plants';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faMagnifyingGlass, faSpinner, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { deleteApiCart, readApiCart, readApiPlant } from '~/Api';
 
-const Header = ({ isLoggedIn, username, id, onLogout }) => {
+const Header = ({ isLoggedIn, username, id, onLogout, onCartUpdate}) => {
     // tạo mảng lưu sản phẩm trong giỏ hàng
     const [carts, setCarts] = useState([]);
     const [cartsUpdated, setCartsUpdated] = useState(false);
-    const cartsAPI = 'http://localhost:3000/cart_bought';
 
     //tạo kết nối giỏ hàng khi có thay đổi sẽ cập nhật
     useEffect(() => {
-        fetch(cartsAPI)
+        fetch(readApiCart)
             .then((response) => response.json())
             .then((data) => {
-                const filteredData = data.filter((item) => item.owner === id);
+                const filteredData = data.filter((item) => item.id_owner === id);
                 setCarts(filteredData);
             });
     }, [cartsUpdated]);
+    useEffect(() => {
+        fetch(readApiCart)
+            .then((response) => response.json())
+            .then((data) => {
+                const filteredData = data.filter((item) => item.id_owner === id);
+                setCarts(filteredData);
+            });
+    }, [onCartUpdate]);
     // Hàm cập nhật giỏ hàng khi có thay đổi
     const updateCarts = () => {
         setCartsUpdated(!cartsUpdated);
@@ -37,8 +45,17 @@ const Header = ({ isLoggedIn, username, id, onLogout }) => {
 
     //xử lý xóa sản phẩm khỏi giỏ hàng
     const handleRemoveProduct = (cart) => {
-        fetch(`${cartsAPI}/${cart.id}`, {
-            method: 'DELETE',
+        const formData2 = new FormData();
+        formData2.append('id_cart', cart.id_cart);
+        formData2.append('id_owner', cart.id_owner);
+        formData2.append('id_plant', cart.id_plant);
+        formData2.append('name_product', cart.name_product);
+        formData2.append('image_reprsent', cart.image_represent);
+        formData2.append('price_product', cart.price_product);
+        formData2.append('quantity', cart.quantity);
+        fetch(deleteApiCart, {
+            method: 'POST',
+            body: formData2,
         })
             .then((response) => {
                 if (response.ok) {
@@ -54,18 +71,15 @@ const Header = ({ isLoggedIn, username, id, onLogout }) => {
     const [searchPlants, setSearchPlants] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
 
-    const plantsAPI = `http://localhost:3000/plants_home`;
     // Gửi yêu cầu API hoặc truy vấn cơ sở dữ liệu để lấy dữ liệu dựa vào giá trị id
     useEffect(() => {
-        fetch(plantsAPI)
+        fetch(readApiPlant)
             .then((response) => response.json())
             .then((data) => setSearchPlants(data));
     }, []);
 
     const handleSearch = () => {
-        setIsLoading(true); // Bắt đầu hiển thị trạng thái loading
         if (searchTerm === '') {
             setSearchResults([]);
         } else {
@@ -74,7 +88,6 @@ const Header = ({ isLoggedIn, username, id, onLogout }) => {
                     searchPlant.name.toLowerCase().includes(searchTerm.toLowerCase()),
                 );
                 setSearchResults(filteredResults);
-                setIsLoading(false); // Kết thúc hiển thị trạng thái loading
             }, 1000);
         }
     };
@@ -181,13 +194,18 @@ const Header = ({ isLoggedIn, username, id, onLogout }) => {
                                                     Đăng xuất
                                                 </button>
                                             </li>
+                                            <li>
+                                                <button className="link_info">
+                                                    <a href='/info'>Thông tin</a>
+                                                </button>
+                                            </li>
                                         </ul>
                                     </div>
                                 </form>
                             </>
                         ) : (
                             <>
-                                <button className="btn-header btn-login">
+                                <button className="btn-header btn-login-header">
                                     <a href="http://localhost:2112/login">Đăng nhập</a>
                                 </button>
                             </>
@@ -214,7 +232,7 @@ const Header = ({ isLoggedIn, username, id, onLogout }) => {
                             <div className="search-results">
                                 {searchResults.map((result) => (
                                     <p className="list" key={result.id}>
-                                        <a href={`/contact?id=${result.id}`}>{result.name}</a>
+                                        <a href={`/product?id=${result.id}`}>{result.name}</a>
                                     </p>
                                 ))}
                             </div>
@@ -223,18 +241,24 @@ const Header = ({ isLoggedIn, username, id, onLogout }) => {
                 </div>
                 <div className="header-third">
                     <div className="tree-category">
-                        {menus.map((menu) => {
-                            return (
-                                <>
-                                    <div className="tree-type">
-                                        <img src="sen-da-mini.jpg" alt="" />
-                                        <li>
-                                            <a href={menu.path}>{menu.name}</a>
-                                        </li>
-                                    </div>
-                                </>
-                            );
-                        })}
+                        <ul className="tree-type">
+                            <img src="sen-da-mini.jpg" alt="" />
+                            <li>
+                                <a href="http://localhost:2112/#CAY_MAY_MAN">CÂY MAY MẮN</a>
+                            </li>
+                            <img src="sen-da-mini.jpg" alt="" />
+                            <li>
+                                <a href="http://localhost:2112/#CAY_DE_BAN">CÂY ĐỂ BÀN</a>
+                            </li>
+                            <img src="sen-da-mini.jpg" alt="" />
+                            <li>
+                                <a href="http://localhost:2112/#CAY_THUY_SINH">CÂY THỦY SINH</a>
+                            </li>
+                            <img src="sen-da-mini.jpg" alt="" />
+                            <li>
+                                <a href="http://localhost:2112/#CAY_NOI_THAT">CÂY NỘI THẤT</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </header>

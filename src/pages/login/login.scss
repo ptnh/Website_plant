@@ -10,7 +10,7 @@
     
     .form_login{
         position: absolute;
-        background: var(--icon-color);
+        background: rgb(151, 255, 151);
         border-radius: 8px;
         inset: 2px;
         z-index: 10;
@@ -45,6 +45,7 @@
             }
         }
         .btn-logins{
+            font-weight: bold;
             width: 120px;
             background-color: aqua;
             padding: 10px;
@@ -54,16 +55,35 @@
             border-radius: 5px;
             bottom: 12px;
             right: 12px;
+
+            &:hover{
+                background-color: rgb(13, 105, 59);
+                color: greenyellow;
+            }
         }
         
         .btn-dangky{
+            // margin-bottom: 2px;
+            color: #1c1c1c;
+            font-weight: bold;
             width: 120px;
             margin-left: -0px;
-            margin-top: 13px;
+            margin-top: 8px;
             padding: 10px;
-            background-color: red;
+            background-color: aqua;
             border-radius: 5px;
             // z-index: 10;
+            &:hover{
+                background-color: rgb(13, 105, 59);
+                
+            }
+
+            &:hover a{
+                color: greenyellow;
+            }
+            a{
+                color: #1c1c1c;
+            }
         }
     }
 }

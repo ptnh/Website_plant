@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { createApiAccount } from '~/Api';
 import './register.scss';
 
 function Register() {
@@ -16,31 +17,30 @@ function Register() {
 
     //tạo account
     const handleCreateAccount = () => {
-        const accountAPI = 'http://localhost:3000/accounts';
-        const newAccount = {
-            name_clients: name_client,
-            email_client: email,
-            phone_client: phone,
-            address_client: address,
-            username_account: username,
-            password_account: password,
-        };
-
-        fetch(accountAPI, {
+        const formData2 = new FormData();
+        formData2.append('name_client', name_client);
+        formData2.append('email_client', email);
+        formData2.append('phone_client', phone);
+        formData2.append('address_client', address);
+        formData2.append('username_account', username);
+        formData2.append('password_account', password);
+        formData2.append('permission', 'USER');
+        fetch(`${createApiAccount}?permission=USER`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newAccount),
+            body: formData2,
         })
-            .then((response) => response.json())
-            .then((data) => {
-                setAccounts([...accounts, data]);
-                setUsername('');
-                setPassword('');
-                navigate('/login');
+            .then((response) => {
+                if (response.ok) {
+                    alert('Đăng ký tài khoản thành công');
+                    setUsername('');
+                    setPassword('');
+                    navigate('/login');
+                } else {
+                    alert('Đăng ký tài khoản không thành công');
+                    throw new Error('Có lỗi xảy khi đăng ký.');
+                }
             })
-            .catch((error) => console.error('Error creating post:', error));
+            .catch((error) => console.error('Error deleting product:', error));
     };
 
     return (
@@ -120,7 +120,7 @@ function Register() {
                     Tạo tài khoản
                 </button>
                 <button className="btn_logins_register">
-                    <a href="http://localhost:2112/login">Đăng nhập</a>
+                    <a href="/login">Đăng nhập</a>
                 </button>
             </div>
         </div>

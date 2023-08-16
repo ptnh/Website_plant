@@ -242,31 +242,16 @@
     font-size: 24px;
 }
 
-.left-button {
-    z-index: 10;
-    margin-right: 10px;
-    // border: 1px solid red;
-}
-.right-button {
-    z-index: 10;
-    margin-right: -14px;
-    // border: 1px solid red;
+.detail-plant {
+    position: relative;
 }
 
 .detail-plant-container {
     display: flex;
     transition: transform 0.3s ease;
+
     // border: 1px solid blue;
     // margin-right: 40px;
-}
-
-.detail-plant {
-    width: 200px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    // border: 5px solid yellow;
 }
 
 .detail-plant .custom-image {
@@ -291,17 +276,52 @@
 }
 
 .price-old {
-    text-decoration: line-through;
-    color: #999;
+    position: absolute;
+    width: 50px;
+    height: 60px;
+    // margin-top: 20px;
+    top: 0px;
+    right: -16px;
+    background-color: rgba(157, 243, 243, 0.8);
+    padding-top: 18px;
+    color: red;
+    font-weight: bold;
+    // box-shadow: 0 2px 5px rgba(157, 243, 243,0.8);
+}
+
+.price-old::after {
+    content: '';
+    position: absolute;
+    bottom: -25px;
+    left: 0px;
+    border-top: 25px solid rgba(157, 243, 243, 0.8);
+    border-right: 25px solid transparent;
+    // box-shadow: 0 2px 5px rgba(157, 243, 243,0.8);
+}
+
+.price-old::before {
+    content: '';
+    position: absolute;
+    bottom: -25px;
+    right: 0px;
+    border-top: 25px solid rgba(157, 243, 243, 0.8);
+    border-left: 25px solid transparent;
+    // box-shadow: 0 2px 5px rgba(157, 243, 243,0.8);
 }
 
 .price-new {
     color: #f00;
 }
-//
 
+.price-discount {
+    text-decoration: line-through;
+    margin-right: 20px;
+}
+//
 .left-button {
     position: absolute;
+    z-index: 10;
+    margin-right: 10px;
     top: 200px;
     left: 0px;
     font-size: 25px;
@@ -312,12 +332,16 @@
     top: 200px;
     right: 14px;
     font-size: 25px;
+    z-index: 10;
+    margin-right: -14px;
 }
 
 .detail-plant {
     border: 1px solid var(--text-color);
+    background-color: #fff;
     text-align: center;
     margin: 10px 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 250px;
     border-radius: 5px;
@@ -338,7 +362,6 @@
 .detail-plant h3 {
     color: greenyellow;
     font-size: 22px;
-    text-decoration: underline;
 }
 
 .price {
@@ -348,7 +371,7 @@
 }
 
 .price-old {
-    text-decoration: line-through;
+    // text-decoration: line-through;
     margin-right: 20px;
 }
 
@@ -357,7 +380,9 @@
     // margin-right: 20px;
     font-size: 20px;
 }
-
+.hidden_discount {
+    display: none;
+}
 .detail-plant:hover img {
     margin-bottom: 20px;
     transform: scale(1.2);
@@ -380,12 +405,26 @@
 
 .add-product {
     position: absolute;
-    bottom: 84px;
+    bottom: 74px;
     // border: 1px solid red;
+    // font-size: 18px;
     padding: 10px 40px;
     border-radius: 0px;
     display: none;
-    color: var(--text-color);
 
     background-color: rgba(34, 32, 32, 0.3);
+    p {
+        font-size: 16px;
+        color: var(--text-color);
+    }
+}
+
+.info_status_cart {
+    position: fixed;
+    background-color: rgb(0, 252, 252);
+    padding: 10px;
+    // position: absolu/te;
+    top: 0px;
+    right: 0px;
+    z-index: 10;
 }

@@ -4,13 +4,11 @@
     margin-left: calc(30% - 100px);
     margin-top: 20px;
     position: relative;
-    background: #1c1c1c;
+    // background: #1c1c1c;
     border-radius: 8px;
     
-  
-
     .form_register {
-        background: var(--icon-color);
+        background: rgb(176, 255, 176);
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -87,8 +85,8 @@
         }
 
         .btn_logins_register {
-            background-color: #007bff;
-            color: #fff;
+            background-color: aqua;
+            
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -97,24 +95,41 @@
             margin-left: 40px;
             margin-bottom: 40px;
 
+            a{
+                color:black ;
+                font-weight: bold;
+            }
+
             &:hover {
-                background-color: #0056b3;
+                background-color: rgb(13, 105, 59);
+                
+                // box-shadow: 2px red;
+            }
+            &:hover a{
+                color: greenyellow;
             }
         }
 
         .btn_dangky_register {
             
-            color: #007bff;
-            text-decoration: none;
+            // color: #007bff;
+            background-color: aqua;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
             display: inline-block;
             margin-top: 10px;
             margin-right: 100px;
             font-size: 16px;
             cursor: pointer;
+            font-weight: bold;
 
             &:hover {
-                text-decoration: underline;
+                // text-decoration: underline;
+                background-color: rgb(13, 105, 59);
+                color: greenyellow;
             }
+
         }
     }
 }

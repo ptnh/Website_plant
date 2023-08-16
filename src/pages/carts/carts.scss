@@ -3,7 +3,7 @@
     position: relative;
     align-items: center;
     justify-content: center;
-    // border: 1px solid red;
+    
     color: var(--main-color);
     font-size: 32px;
 }
@@ -54,49 +54,47 @@
 }
 
 .stages_of_cart {
-    // border: 1px solid aqua;
-    width: 500px;
+   
+    width: 600px;
     margin: 40px 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    // color: green;
 }
 
-.stage_1 {
-    // border: 1px solid blue;
-    color: green;
-    margin-right: 20px;
-}
+
 
 .phase {
     font-size: 24px;
 }
 
-.stage_1 p {
-    margin: 5px 0px;
-}
-
-.stage_1 {
+.stage_1_carts {
     position: relative;
-    border: 1px solid pink;
+    // border: 1px solid pink;
     z-index: 0;
+    // display: flex
+    color: green;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-color: aquamarine;
 }
 
-.stage_1::before {
+.stage_1_carts p {
+    margin: 5px 0px;
+    color: green;
+}
+
+
+
+.stage_1_carts_icon{
     position: absolute;
-    content: '';
-    bottom: 12px;
-    left: -45px;
-    width: 200px;
-    height: 2px;
-    background-color: red;
-    z-index: 10;
-}
-
-.stage_2 {
-    border: 1px solid pink;
-    margin-right: 20px;
+    bottom: 40px;
+    right: -55px;
+    display: flex;
+    margin: 0px 20px;
 }
 
 .stage_2 p {
@@ -105,25 +103,21 @@
 
 .stage_2 {
     position: relative;
-    /* border: 1px solid pink; */
+    border-radius: 10px;
+    margin-right: 25px;
+    border: 2px solid rgb(30, 255, 0);
+    padding: 10px;
     z-index: 1;
 }
 
-.stage_2::before {
+.stage_2_carts_icon{
     position: absolute;
-    content: '';
-    bottom: 12px;
-    left: -28px;
-    width: 185px;
-    height: 2px;
-    background-color: black;
-    z-index: 10;
+    bottom: 40px;
+    right: -60px;
+    display: flex;
+    margin: 0px 20px;
 }
 
-.stage_3 {
-    border: 1px solid pink;
-    /* margin-right: 20px; */
-}
 
 .stage_3 p {
     margin: 5px 0px;
@@ -131,21 +125,11 @@
 
 .stage_3 {
     position: relative;
-    /* border: 1px solid pink; */
+    border: 2px solid rgb(30, 255, 0);
+    padding: 10px;
+    border-radius: 10px;
     z-index: 1;
 }
-
-.stage_3::before {
-    position: absolute;
-    content: '';
-    bottom: 12px;
-    left: -26px;
-    width: 180px;
-    height: 2px;
-    background-color: blue;
-    z-index: 10;
-}
-
 /* css khung danh sách hàng trong giỏ */
 .list_products {
     width: 100%;
@@ -160,7 +144,7 @@ td {
 
 th {
     max-height: 20px;
-    background-color: #584d4d;
+    background-color: #887e7e;
 }
 
 tr:hover {

@@ -141,9 +141,9 @@
 
 .price-product {
     font-size: 32px;
-    display: flex;
+    // display: flex;
     margin-left: 0px;
-    align-items: center;
+    // align-items: center;
     // color: var(--main-color);
 }
 
@@ -153,18 +153,41 @@ span {
 
 .discount-price {
     font-size: 24px;
-    margin-left: 40px;
+    margin-left: -20px;
+    margin-top: -10px;
     span {
         text-decoration: line-through;
         font-size: 18px;
-        color: bisque;
+        color: black;
+        margin-left: 20px;
     }
 }
 
 .real-price {
+    display: flex;
+    align-items: center;
     color: red;
     font-size: 22px;
-    // margin-left: 80px;
+    margin-bottom: 20px;
+    p{
+        color: red;
+        margin-left: 8px;
+        font-size: 24px;
+    }
+}
+
+.save-money{
+    display: flex;
+    align-items: center;
+    color: red;
+    font-size: 22px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    p{
+        color: red;
+        margin-left: 8px;
+        font-size: 24px;
+    }
 }
 
 .add-product-detail {
@@ -197,7 +220,7 @@ span {
     margin: 10px;
     background-color: var(--background-color);
     border-radius: 5px;
-
+    // border: 1px solid red;
     .stemp-product {
         position: absolute;
         top: 10px;
@@ -250,17 +273,24 @@ span {
     }
 
     .list-plants-product {
+        width: 880px;
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
         margin: 40px 20px 20px 20px;
+        overflow: hidden;
         padding: 10px 0px;
         background-color: var(--background-color);
+
+        .detail-plant-container{
+            // width: 100%;
+        }
         // border: 1px solid red;
     }
 }
 
 .detail-plant-product {
+    // flex-basis: calc(30%); /* Trừ 20px để tính đến margin */
     width: 250px;
     height: 350px;
     background-color: #fff;
@@ -269,8 +299,7 @@ span {
     text-align: center;
     position: relative;
     overflow: hidden;
-    // margin-left: 20px;
-    margin: 10px;
+    margin: 10px 20px;
 }
 
 .detail-plant-product img {
@@ -286,11 +315,15 @@ span {
 .detail-plant-product h3 {
     font-size: 22px;
     margin-bottom: 5px;
+    // color: #f00;
+    a{
+        color: aqua;
+    }
 }
 
 .price-product {
-    display: flex;
-    justify-content: center;
+    // display: flex;
+    // justify-content: center;
 }
 
 .price-old-product {
@@ -374,6 +407,7 @@ span {
 }
 
 .icon_service {
+    margin-left: 5px;
     font-size: 24px;
     color: #f39c12;
     margin-right: 10px;
@@ -423,3 +457,159 @@ span {
     margin: 0;
     padding: 0;
 }
+
+/* ============= begin product reviews=============== */
+
+.product__reviews{
+    margin: 2% 0%;
+    // background-color: #f8f8f8;
+    // border-radius: 56px;
+    // border: 1px solid red;
+    width: 100%;
+    .desc-title{
+        font-size: 28px;
+        text-align: center;
+    }
+    .box-rating{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding: 15px 60px;
+
+        .average-rating{
+            // display: flex;
+            align-items: center;
+            .aver-rating{
+                align-items: center;
+                display: flex;
+            }
+            h4{
+                margin-right: 20px;
+                font-size: 24px ;
+                font-weight: bold;
+            }
+            
+            .rating{
+                font-size: 38px;
+                font-weight: 500;
+                color: #bb0000;
+            }
+        }
+        
+    }
+}
+
+.icon-star{
+    font-size: 24px;
+    color: #efb140;
+    margin-left: 4px;
+}
+.box-form{
+    margin: 0 6%;
+    padding-top: 24px;
+    border-top: 2px solid #9f9f9f;
+}
+.box-form h4{
+    font-size: 24px;
+    font-weight: 400;
+}
+.box-form input{
+    font-size: 18px;
+    height: 48px;
+    padding: 0 8px;
+    margin: 8px;
+    border-radius: 24px;
+    border: 2px solid #9f9f9f;
+    outline: none;
+    background-color: transparent;
+}
+.box-form button{
+    font-size: 18px;
+    height: 48px;
+    padding: 0 24px;
+    margin: 8px;
+    border-radius: 24px;
+    color: white;
+    transition: 0.5s;
+    background-color: rgb(6, 180, 6);
+}
+.box-form button:hover{
+    // background-color: transparent;
+    color: #000;
+}
+.box-form div{
+    display: flex;
+    flex-wrap: wrap;
+}
+.item1{
+    flex: 1 0 400px;
+}
+.item2{
+    flex: 1 0 400px;
+}
+.item3{
+    flex: 1 0 150px;
+}
+.box_review{
+    display: flex;
+    flex-direction: column;
+    /* background-color: rgb(217, 180, 255); */
+    /* width: 80%; */
+    padding: 0% 10%;
+}
+.box-content{
+    padding: 5px 0px;
+}
+.selectStar{
+    display: flex;
+    flex-direction: column;
+}
+#star_select
+{
+    background-color: #dbefff;
+    
+}
+.box-item{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+    align-items: center;
+}
+.box-item .avatar{
+    height: 48px;
+    width: 48px;
+    border-radius: 24px;
+    margin-right: 8px;
+    border: 2px solid #9f9f9f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.comment{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #9f9f9f;
+}
+.user-name{
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+}
+.star-cmt
+{
+    display: flex;
+    // border: 1px solid red;
+    flex-direction: row;
+}
+.rating{
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+}
+.comment-container
+{
+    width: 90%;
+}
+/* ============= end product reviews=============== */
+
